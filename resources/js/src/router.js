@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Login from './components/Auth/Login.vue';
+import Dashboard from './components/Dashboard.vue';
 import UploadPDF from './components/PDF/UploadPDF.vue';
 
 Vue.use(VueRouter);
@@ -11,10 +12,11 @@ const routes = [
         path: '/login',
         component: Login,
         name: 'login',
+        meta: { requiresLogin: false }
     },
     {
         path: '/dashboard',
-        component: UploadPDF,
+        component: Dashboard,
         name: 'home',
         meta: { requiresLogin: true }
     },

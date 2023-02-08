@@ -1,7 +1,7 @@
 import api from "../../services/api";
-import {store} from "../../store/vuejx";
+import { store } from "../../store/vuejx";
 import router from "../../router";
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     name: "Login",
@@ -22,7 +22,7 @@ export default {
         login() {
             api.post('api/login', this.form).then(r => {
                 store.commit('UPDATE_TOKEN', r.data.token);
-                router.push('home')
+                router.push('dashboard')
             }).catch(e => {
                 this.errors = e.response.data.errors
             })

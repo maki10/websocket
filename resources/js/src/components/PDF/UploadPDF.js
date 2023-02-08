@@ -1,5 +1,4 @@
 import api from "../../services/api";
-import {mapGetters} from "vuex";
 
 export default {
     name: "UploadPDF",
@@ -7,22 +6,18 @@ export default {
     data() {
         return {
             pdf: '',
-            error: ''
+            error: '',
+            savingState: []
         }
     },
 
     mounted() {
         window.Echo.channel('upload-pdf')
             .listen('PDFUploadEvent', (e) => {
-                console.log(e)
+                this.savingState.push(e)
             })
     },
-
-    computed: {
-        ...mapGetters(['token']),
-    },
-
-
+    
     methods: {
         uploadPDF(e) {
             if (!e.target.files.length) {
@@ -34,16 +29,15 @@ export default {
         savePdf() {
             if (this.pdf === '') {
                 this.error = 'Global Error';
-                // return false;
+                return false;
             }
 
             api.post('/api/upload-pdf', {pdf: this.pdf}, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(r => {
-
-            }).catch(e => this.error = e.response.data.message)
+            }).then(() => this.$refs.uploadPdfForm.reset())
+            .catch(e => this.error = e.response.data.message)
         },
     }
 }

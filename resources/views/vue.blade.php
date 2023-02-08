@@ -35,9 +35,17 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        <li class="nav-item" v-if="$store.state.token">
-                            <router-link to="/upload-pdf" class="nav-link">Upload PDF</router-link>
-                        </li>
+                        <template v-if="$store.state.token">
+                            <li class="nav-item">
+                                <router-link to="/dashboard" class="nav-link">All PDFs</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/upload-pdf" class="nav-link">Upload PDF</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <a @click.prevent="logout()" class="nav-link">Logout</a>
+                            </li>
+                        </template>
                         <li class="nav-item" v-else>
                             <router-link to="/upload-pdf" class="nav-link">Login</router-link>
                         </li>

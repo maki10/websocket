@@ -11,6 +11,7 @@ class Pdf extends Model
 
     protected $fillable = [
         'text',
-        'file_name'
+        'file_name',
+        'user_id'
     ];
 }

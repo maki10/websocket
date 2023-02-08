@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use App\Repositories\Contracts\PDFInterface;
-use App\Repositories\PDFRepository;
-use App\Services\Contracts\PDFHandlerInterface;
-use App\Services\Contracts\PDFParserInterface;
-use App\Services\ParserService;
-use App\Services\PDFHandlerService;
+use App\Repositories\Contracts\PDFRepositoryInterface;
+use App\Repositories\PDFRepositoryRepository;
+use App\Services\Contracts\File\FileInterface;
+use App\Services\Contracts\PDF\ParserInterface;
+use App\Services\File\FileService;
+use App\Services\PDF\ParserService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,9 +20,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $services = [
-            PDFHandlerInterface::class => PDFHandlerService::class,
-            PDFParserInterface::class => ParserService::class,
-            PDFInterface::class => PDFRepository::class
+            ParserInterface::class => ParserService::class,
+            PDFRepositoryInterface::class => PDFRepositoryRepository::class,
+            FileInterface::class => FileService::class
         ];
 
         foreach ($services as $key => $value) {

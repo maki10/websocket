@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('{any}', [
-    fn() => view('layouts.vue')
+    fn() => view('vue')
 ])->where('any', '.*');

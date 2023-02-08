@@ -2,13 +2,14 @@
 
 namespace App\Events;
 
+use App\Http\Resources\PDFResource;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PDFUploadEvent implements ShouldBroadcast
+class PDFEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,11 +18,11 @@ class PDFUploadEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(private array $states) {}
+    public function __construct(private PDFResource $pdf) {}
 
     public function broadcastWith()
     {
-        return $this->states;
+        return $this->pdf->resolve();
     }
 
     /**
@@ -31,6 +32,6 @@ class PDFUploadEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('upload-pdf');
+        return new Channel('pdf');
     }
 }
