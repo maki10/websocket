@@ -22,7 +22,7 @@ export default {
         login() {
             api.post('api/login', this.form).then(r => {
                 store.commit('UPDATE_TOKEN', r.data.token);
-                router.push('dashboard')
+                router.push('/')
             }).catch(e => {
                 this.errors = e.response.data.errors
             })

@@ -37,7 +37,7 @@
                         <!-- Authentication Links -->
                         <template v-if="$store.state.token">
                             <li class="nav-item">
-                                <router-link to="/dashboard" class="nav-link">All PDFs</router-link>
+                                <router-link to="/" class="nav-link">All PDFs</router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/upload-pdf" class="nav-link">Upload PDF</router-link>

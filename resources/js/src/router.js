@@ -15,7 +15,7 @@ const routes = [
         meta: { requiresLogin: false }
     },
     {
-        path: '/dashboard',
+        path: '/',
         component: Dashboard,
         name: 'home',
         meta: { requiresLogin: true }
